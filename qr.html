@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de QR para URLs</title>
+  <link rel="stylesheet" href="qr.css">
+  <!-- Librería QRious para generar QR -->
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+</head>
+<body>
+  <div class="qr-container">
+    <h1>Generador de Código QR para URLs</h1>
+    <label for="url-input">Introduce la URL:</label>
+    <input type="url" id="url-input" placeholder="https://ejemplo.com">
+    <button id="generate-btn">Generar QR</button>
+    <div id="qr-preview"></div>
+  </div>
+  <script src="qr.js"></script>
+</body>
+</html> 

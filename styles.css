@@ -1,0 +1,245 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f4f4f9;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 0;
+  z-index: 2;
+}
+
+.top-bar h1 {
+  text-align: left;
+  color: #333;
+  margin: 0 0 10px 0;
+  font-size: 1.3em;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
+
+.controls label {
+  margin-bottom: 0;
+  font-weight: 500;
+  color: #444;
+}
+
+#function-input {
+  min-width: 220px;
+  flex: 1 1 220px;
+  padding: 8px;
+  font-size: 1.1em;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+.ranges {
+  display: flex;
+  gap: 10px;
+}
+.ranges div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ranges label {
+  font-size: 0.98em;
+  color: #555;
+}
+.ranges input[type="number"] {
+  width: 70px;
+  padding: 6px;
+  font-size: 1em;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+#plot-btn {
+  padding: 8px 18px;
+  background: #4f8cff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 0;
+}
+#plot-btn:hover {
+  background: #2563eb;
+}
+
+#latex-preview {
+  min-height: 32px;
+  margin-bottom: 0;
+  text-align: left;
+  font-size: 1.1em;
+  color: #222;
+}
+
+#plot {
+  flex: 1 1 auto;
+  width: 100vw;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 700px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .ranges {
+    flex-direction: column;
+    gap: 4px;
+  }
+  #function-input {
+    min-width: 0;
+  }
+}
+
+.zoom-controls {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 12px;
+  padding: 8px 4px;
+  pointer-events: auto;
+}
+.zoom-controls button {
+  width: 56px;
+  height: 56px;
+  font-size: 2em;
+  background: #4f8cff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.zoom-controls button:hover {
+  background: #2563eb;
+  transform: scale(1.08);
+}
+@media (max-width: 700px) {
+  .zoom-controls {
+    right: 12px;
+    bottom: 12px;
+    gap: 10px;
+  }
+  .zoom-controls button {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5em;
+  }
+} 
+
+
+/* Aumenta el tamaño de los iconos de la barra de Plotly */
+.js-plotly-plot .modebar-btn {
+  font-size: 1.8em !important;
+  width: 1.8em !important;
+  height: 1.8em !important;
+  min-width: 1.8em !important;
+  min-height: 1.8em !important;
+  padding: 0.4em !important;
+}
+.js-plotly-plot .modebar {
+  visibility: hidden;
+  padding: 8px !important;
+} 
+
+/* Botones de rango para xMin/xMax */
+#x-min-dec, #x-min-inc, #x-max-dec, #x-max-inc {
+  z-index: 10;
+  position: relative;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  margin: 0 2px;
+  padding: 2px 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: background 0.2s, border 0.2s;
+}
+#x-min-dec:hover, #x-min-inc:hover, #x-max-dec:hover, #x-max-inc:hover {
+  background: #e0e7ff;
+  border-color: #4f8cff;
+}
+
+#x-range-controls {
+  position: fixed;
+  right: 24px;
+  bottom: 100px;
+  z-index: 2001;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#x-range-controls label {
+  font-size: 1em;
+  color: #444;
+  margin: 0 2px;
+}
+#x-range-controls input[type="number"] {
+  width: 60px;
+  padding: 4px;
+  font-size: 1em;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+#x-range-controls button {
+  z-index: 2002;
+  position: relative;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  margin: 0 2px;
+  padding: 2px 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: background 0.2s, border 0.2s;
+}
+#x-range-controls button:hover {
+  background: #e0e7ff;
+  border-color: #4f8cff;
+} 

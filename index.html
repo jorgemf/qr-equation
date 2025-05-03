@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizador 3D de Funciones Matemáticas</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  <!-- MathJax -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="top-bar">
+    <div id="controls-wrapper">
+      <div class="controls">
+        <label for="function-input">f(x, y):</label>
+        <input type="text" id="function-input" placeholder="Ejemplo: Math.sin(x) * Math.cos(y)">
+        <div class="ranges">
+          <div>
+            <label for="x-min">x min:</label>
+            <button type="button" id="x-min-dec">-</button>
+            <input type="number" id="x-min" value="-5" step="any">
+            <button type="button" id="x-min-inc">+</button>
+            <label for="x-max">x max:</label>
+            <button type="button" id="x-max-dec">-</button>
+            <input type="number" id="x-max" value="5" step="any">
+            <button type="button" id="x-max-inc">+</button>
+          </div>
+        </div>
+        <button id="plot-btn">Graficar</button>
+        <div id="latex-preview"></div>
+      </div>
+    </div>
+  </div>
+  <div id="plot"></div>
+  <div class="zoom-controls">
+    <button id="zoom-in">+</button>
+    <button id="zoom-out">-</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 

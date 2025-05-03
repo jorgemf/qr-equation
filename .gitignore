@@ -1,0 +1,10 @@
+# Certificados autofirmados
+server.pem
+server-key.pem
+
+# Dependencias de Node.js
+node_modules/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db 
