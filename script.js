@@ -144,13 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const decodedFunc = decodeURIComponent(urlFunc);
     console.log('[DEBUG] decodedFunc:', decodedFunc);
     document.getElementById('function-input').value = decodedFunc;
-    // Aplicar xMin/xMax de la URL si existen
     if (urlXMin !== null) document.getElementById('x-min').value = urlXMin;
     if (urlXMax !== null) document.getElementById('x-max').value = urlXMax;
-    // Ocultar controles si la ecuación viene por GET
     document.getElementById('controls-wrapper').style.display = 'none';
-    // Si es móvil, activar control por sensores
-    if (isMobile() && window.DeviceOrientationEvent) {
+    // Si es móvil o iOS, activar control por sensores
+    if ((isMobile() || isIOS()) && window.DeviceOrientationEvent) {
       enableMobileGyroControl();
     }
     console.log('[DEBUG] Valor final en input:', document.getElementById('function-input').value);
@@ -189,11 +187,20 @@ document.addEventListener('DOMContentLoaded', () => {
     xMaxInput.value = parseFloat(xMaxInput.value) + 1;
     graficar();
   });
+
+  // Pedir permisos en iOS aunque no sea ejemplo
+  if ((isMobile() || isIOS()) && window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    DeviceOrientationEvent.requestPermission().catch(()=>{});
+  }
 });
 
 // --- Control con sensores de movimiento en móvil ---
 function isMobile() {
   return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 }
 
 function enableMobileGyroControl() {
